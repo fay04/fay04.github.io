@@ -4,27 +4,27 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>简述element和node的区别 | fayのblog</title>
+    <title>css包含块 | fayのblog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="fay">
     
 
     
-    <meta name="description" content="12根据w3c文档查询，node中node Types包含十二种不同的节点，如文档、元素、属性以及 HTML 或 XML 文档的其他方面拥有不同的节点类型。    节点类型 描述 子节点     1       ==Element== 代表元素 Element, Text, Comment, ProcessingInstruction, CDATASection, EntityReference">
-<meta name="keywords" content="html">
+    <meta name="description" content="参考http://www.cnblogs.com/fogwind/p/6017375.html 有时，一个元素的盒子的位置和尺寸根据一个确定的矩形计算，这个确定的矩形叫这个元素的包含块。一个元素的包含块根据以下规则确定： 1、根元素所在的包含块叫初始包含块 initial containing block。对于连续媒体设备（continuous media），初始包含块的大小等于视口viewpo">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简述element和node的区别">
-<meta property="og:url" content="https://fay04.github.io/2017/05/14/简述element和node的区别/index.html">
+<meta property="og:title" content="css包含块">
+<meta property="og:url" content="https://fay04.github.io/2017/10/14/css包含块 - 副本/index.html">
 <meta property="og:site_name" content="fayのblog">
-<meta property="og:description" content="12根据w3c文档查询，node中node Types包含十二种不同的节点，如文档、元素、属性以及 HTML 或 XML 文档的其他方面拥有不同的节点类型。    节点类型 描述 子节点     1       ==Element== 代表元素 Element, Text, Comment, ProcessingInstruction, CDATASection, EntityReference">
+<meta property="og:description" content="参考http://www.cnblogs.com/fogwind/p/6017375.html 有时，一个元素的盒子的位置和尺寸根据一个确定的矩形计算，这个确定的矩形叫这个元素的包含块。一个元素的包含块根据以下规则确定： 1、根元素所在的包含块叫初始包含块 initial containing block。对于连续媒体设备（continuous media），初始包含块的大小等于视口viewpo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://fay04.github.io/img/node&ele.png">
-<meta property="og:updated_time" content="2017-08-29T06:20:03.895Z">
+<meta property="og:image" content="https://fay04.github.io/img/block.png">
+<meta property="og:updated_time" content="2017-10-16T06:07:58.998Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简述element和node的区别">
-<meta name="twitter:description" content="12根据w3c文档查询，node中node Types包含十二种不同的节点，如文档、元素、属性以及 HTML 或 XML 文档的其他方面拥有不同的节点类型。    节点类型 描述 子节点     1       ==Element== 代表元素 Element, Text, Comment, ProcessingInstruction, CDATASection, EntityReference">
-<meta name="twitter:image" content="https://fay04.github.io/img/node&ele.png">
+<meta name="twitter:title" content="css包含块">
+<meta name="twitter:description" content="参考http://www.cnblogs.com/fogwind/p/6017375.html 有时，一个元素的盒子的位置和尺寸根据一个确定的矩形计算，这个确定的矩形叫这个元素的包含块。一个元素的包含块根据以下规则确定： 1、根元素所在的包含块叫初始包含块 initial containing block。对于连续媒体设备（continuous media），初始包含块的大小等于视口viewpo">
+<meta name="twitter:image" content="https://fay04.github.io/img/block.png">
 
     
     
@@ -83,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/05/14/简述element和node的区别/" title="简述element和node的区别" itemprop="url">简述element和node的区别</a>
+      <a href="/2017/10/14/css包含块 - 副本/" title="css包含块" itemprop="url">css包含块</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="fay" target="_blank" itemprop="author">fay</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-14T08:25:01.000Z" itemprop="datePublished"> 发表于 2017-05-14</time>
+    <time datetime="2017-10-14T12:25:01.000Z" itemprop="datePublished"> 发表于 2017-10-14</time>
     
   </p>
   <link rel="stylesheet" href="/css/gitment.css"> 
@@ -106,95 +106,20 @@
 		</div>
 		
 		<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">根据w3c文档查询，node中node Types包含十二种不同的节点，如文档、元素、属性以及 HTML </div><div class="line">或 XML 文档的其他方面拥有不同的节点类型。</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>节点类型</th>
-<th>描述</th>
-<th>子节点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1       ==Element==</td>
-<td>代表元素</td>
-<td>Element, Text, Comment, ProcessingInstruction, CDATASection, EntityReference</td>
-<td></td>
-</tr>
-<tr>
-<td>2    Attr</td>
-<td>代表属性</td>
-<td>Text, EntityReference</td>
-<td></td>
-</tr>
-<tr>
-<td>3    Text</td>
-<td>代表元素或属性中的文本内容。</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>4    CDATASection</td>
-<td>代表文档中的 CDATA 部分（不会由解析器解析的文本）。</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>5    EntityReference</td>
-<td>代表实体引用。</td>
-<td>Element, ProcessingInstruction, Comment, Text, CDATASection, EntityReference</td>
-<td></td>
-</tr>
-<tr>
-<td>6    Entity</td>
-<td>代表实体。</td>
-<td>Element, ProcessingInstruction, Comment, Text, CDATASection, EntityReference</td>
-<td></td>
-</tr>
-<tr>
-<td>7    ProcessingInstruction</td>
-<td>代表处理指令。</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>8    Comment</td>
-<td>代表注释。</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>9    Document</td>
-<td>代表整个文档（DOM 树的根节点）。</td>
-<td>Element, ProcessingInstruction, Comment, DocumentType</td>
-<td></td>
-</tr>
-<tr>
-<td>10    DocumentType</td>
-<td>向为文档定义的实体提供接口</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>11    DocumentFragment</td>
-<td>代表轻量级的 Document 对象，能够容纳文档的某个部分</td>
-<td>Element, ProcessingInstruction, Comment, Text, CDATASection, EntityReference</td>
-<td></td>
-</tr>
-<tr>
-<td>12    Notation</td>
-<td>代表 DTD 中声明的符号。</td>
-<td>None</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Node 包含element，<br>Element继承了Node类，也就是说Element是Node多种类型中的一种，即当NodeType为1时Node即为ElementNode，另外Element扩展了Node，Element拥有id、class、children等属性。<br>那么根据id值取到的是element还是Node呢<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var divDom = document.getElementById(&quot;testdiv&quot;);</div><div class="line">console.log(divDom instanceof Node)    //true</div><div class="line">console.log(divDom instanceof Element)   //true</div><div class="line">console.log(divDom.children[0] instanceof Node)    //true</div><div class="line">console.log(divDom.children[0] instanceof Element) //true</div><div class="line">console.log(divDom.childNodes[0] instanceof Node) //true</div><div class="line">console.log(divDom.childNodes[0] instanceof Element) //false</div></pre></td></tr></table></figure></p>
-<p>通过以上代码，发现children是element 和node实例， childNodes仅仅是node实例       </p>
-<p>因此：</p>
-<p>childeNodes是Node的属性，children是Element的属性，Node包含element，element不包含node</p>
-<p><img src="/img/node&amp;ele.png" alt="image"></p>
+<p>参考<a href="[http://www.cnblogs.com/fogwind/p/6017375.html">http://www.cnblogs.com/fogwind/p/6017375.html</a></p>
+<p>有时，一个元素的盒子的位置和尺寸根据一个确定的矩形计算，这个确定的矩形叫这个元素的包含块。一个元素的包含块根据以下规则确定：</p>
+<p>1、根元素所在的包含块叫初始包含块 initial containing block。对于连续媒体设备（continuous media），初始包含块的大小等于视口viewpor的大小，基点在画布的原点（视口左上角）；对于分页媒体（paged media），初始包含块是页面区域（page area）。初始包含块的direction属性与根元素的相同。</p>
+<p>2、对于其他元素，如果元素的position属性是relative或static，他的包含块是由最近的祖先块容器盒（block container ancestor box）的内容区域（content edge：width属性和height属性确定的区域）创建的。</p>
+<p>3、如果一个元素的position属性为fixed，他的包含块由视口创建（连续媒体）或者由页面区域创建（paged media）。</p>
+<p>4、如果元素的position为absolute，他的包含块由最近的position不为static的祖先元素创建，具体创建方式如下：</p>
+<ul>
+<li><p>如果创建包含块的祖先元素是行内元素（inline element），包含块的范围是这个祖先元素中的第一个和最后一个行内盒的padding box围起来的区域。</p>
+</li>
+<li><p>如果这个祖先元素不是行内元素，包含块的范围是这个祖先元素的内边距+width区域（padding edge）。</p>
+</li>
+</ul>
+<p>如果没有找到这样的祖先元素，这个绝对定位的元素的包含块为初始包含块。</p>
+<p><img src="/img/block.png" alt="image"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -203,7 +128,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/html/">html</a>
+  <span></span> <a href="/tags/css/">css</a>
   </div>
 
 </div>
@@ -212,7 +137,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://fay04.github.io/2017/05/14/简述element和node的区别/" data-title="简述element和node的区别 | fayのblog" data-tsina="null" class="share clearfix">
+	  <div data-url="https://fay04.github.io/2017/10/14/css包含块 - 副本/" data-title="css包含块 | fayのblog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -225,19 +150,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/05/24/有关vue项目的搭建以及 scss的调试/" title="有关vue项目的搭建以及 scss的调试">
-  <strong>上一篇：</strong><br/>
-  <span>
-  有关vue项目的搭建以及 scss的调试</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/04/06/移动端经验之谈/"  title="移动端经验之谈">
+<a href="/2017/09/07/gitment hexo 评论区搭建/"  title="gitment hexo 评论区搭建">
  <strong>下一篇：</strong><br/> 
- <span>移动端经验之谈
+ <span>gitment hexo 评论区搭建
 </span>
 </a>
 </div>
