@@ -1,0 +1,549 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>移动端经验之谈 | fayのblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="fay">
+    
+
+    
+    <meta name="description" content="1.移动端自适应  移动端的自适应一般是根据rem实现的，rem是参考根元素去设置元素的像素。比如 123456html&amp;#123;      font-size:16px;  &amp;#125;  h1 &amp;#123;      font-size: 2rem;//32px  &amp;#125; 此时的2rem为32px 根元素的像素值是根据设备像素比dpr和设备的宽度去决定的。 border值一般在移动端">
+<meta name="keywords" content="mobile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端经验之谈">
+<meta property="og:url" content="https://fay04.github.io/2017/04/06/移动端经验之谈/index.html">
+<meta property="og:site_name" content="fayのblog">
+<meta property="og:description" content="1.移动端自适应  移动端的自适应一般是根据rem实现的，rem是参考根元素去设置元素的像素。比如 123456html&amp;#123;      font-size:16px;  &amp;#125;  h1 &amp;#123;      font-size: 2rem;//32px  &amp;#125; 此时的2rem为32px 根元素的像素值是根据设备像素比dpr和设备的宽度去决定的。 border值一般在移动端">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-29T04:48:20.605Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端经验之谈">
+<meta name="twitter:description" content="1.移动端自适应  移动端的自适应一般是根据rem实现的，rem是参考根元素去设置元素的像素。比如 123456html&amp;#123;      font-size:16px;  &amp;#125;  h1 &amp;#123;      font-size: 2rem;//32px  &amp;#125; 此时的2rem为32px 根元素的像素值是根据设备像素比dpr和设备的宽度去决定的。 border值一般在移动端">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="fayのblog" title="fayのblog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="fayのblog">fayのblog</a></h1>
+				<h2 class="blog-motto">不讲究，不将就，对生活，亦对技术。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:fay04.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/06/移动端经验之谈/" title="移动端经验之谈" itemprop="url">移动端经验之谈</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="fay" target="_blank" itemprop="author">fay</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-06T04:05:01.000Z" itemprop="datePublished"> 发表于 2017-04-06</time>
+    
+  </p>
+  <link rel="stylesheet" href="/css/gitment.css"> 
+<script src="/js/gitment.js"></script> 
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-移动端自适应"><span class="toc-number">1.</span> <span class="toc-text">1.移动端自适应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-单行溢出显示省略号-amp-amp-多行溢出显示省略号"><span class="toc-number">2.</span> <span class="toc-text">2.单行溢出显示省略号&& 多行溢出显示省略号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-分辨率"><span class="toc-number">3.</span> <span class="toc-text">3.分辨率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-图片"><span class="toc-number">4.</span> <span class="toc-text">4.图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-判断是否是手机端"><span class="toc-number">5.</span> <span class="toc-text">5.判断是否是手机端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-移动端滚动不顺畅"><span class="toc-number">6.</span> <span class="toc-text">6.移动端滚动不顺畅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-动画尽可能使用css实现"><span class="toc-number">7.</span> <span class="toc-text">7. 动画尽可能使用css实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-消除transition闪屏"><span class="toc-number">8.</span> <span class="toc-text">8.消除transition闪屏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-利用padding-top-100-，给图片预留位置，防止页面重新渲染"><span class="toc-number">9.</span> <span class="toc-text">9.利用padding-top:100%，给图片预留位置，防止页面重新渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-添加分享到朋友圈缩略图"><span class="toc-number">10.</span> <span class="toc-text">10.添加分享到朋友圈缩略图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-关闭ios键盘首字母大写"><span class="toc-number">11.</span> <span class="toc-text">11. 关闭ios键盘首字母大写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-ios中去掉元素被触摸时产生的半透明灰色遮罩"><span class="toc-number">12.</span> <span class="toc-text">11.ios中去掉元素被触摸时产生的半透明灰色遮罩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-去除移动端输入框内阴影"><span class="toc-number">13.</span> <span class="toc-text">12.去除移动端输入框内阴影</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-移动端禁止选中内容"><span class="toc-number">14.</span> <span class="toc-text">13.移动端禁止选中内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-移动端自动拨号"><span class="toc-number">15.</span> <span class="toc-text">14.移动端自动拨号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-禁止将页面中的数字识别为电话号码"><span class="toc-number">16.</span> <span class="toc-text">15.禁止将页面中的数字识别为电话号码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-忽略Android平台中对邮箱地址的识别"><span class="toc-number">17.</span> <span class="toc-text">16.忽略Android平台中对邮箱地址的识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-禁止调整字体大小"><span class="toc-number">18.</span> <span class="toc-text">17. 禁止调整字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-active兼容处理-即-伪类-active-失效"><span class="toc-number">19.</span> <span class="toc-text">18.active兼容处理 即 伪类 :active 失效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-启动画面"><span class="toc-number">20.</span> <span class="toc-text">19.启动画面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-强制横屏"><span class="toc-number">21.</span> <span class="toc-text">20.强制横屏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-部分机型存在type为search的input，自带close按钮样式修改方法"><span class="toc-number">22.</span> <span class="toc-text">21.部分机型存在type为search的input，自带close按钮样式修改方法</span></a></li></ol>
+		
+		</div>
+		
+		<hr>
+<h2 id="1-移动端自适应"><a href="#1-移动端自适应" class="headerlink" title="1.移动端自适应"></a>1.移动端自适应</h2><p>  移动端的自适应一般是根据rem实现的，rem是参考根元素去设置元素的像素。比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">html&#123;</div><div class="line">      font-size:16px;</div><div class="line">  &#125;</div><div class="line">  h1 &#123;</div><div class="line">      font-size: 2rem;//32px</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>此时的2rem为32px</p>
+<p>根元素的像素值是根据设备像素比dpr和设备的宽度去决定的。</p>
+<p>border值一般在移动端设置为1px，因为dpr的不同会显示为2px，因此border一般用after 去设置，如 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">:border &#123;</div><div class="line">    content:&quot;&quot;</div><div class="line">    position:absolute;</div><div class="line">    top:0;</div><div class="line">    left:0;</div><div class="line">    width:1px;</div><div class="line">    height:100%;</div><div class="line">    transform:scaleX(.5);//设置左边距</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-单行溢出显示省略号-amp-amp-多行溢出显示省略号"><a href="#2-单行溢出显示省略号-amp-amp-多行溢出显示省略号" class="headerlink" title="2.单行溢出显示省略号&amp;&amp; 多行溢出显示省略号"></a>2.单行溢出显示省略号&amp;&amp; 多行溢出显示省略号</h2><ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow: hidden;      </div><div class="line">text-overflow: ellipsis; </div><div class="line">white-space: nowrap;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">overflow: hidden;</div><div class="line">text-overflow: ellipsis;</div><div class="line">display: -webkit-box;</div><div class="line">-webkit-line-clamp: 2;</div><div class="line">-webkit-box-orient: vertical;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-分辨率"><a href="#3-分辨率" class="headerlink" title="3.分辨率"></a>3.分辨率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;/&gt;</div></pre></td></tr></table></figure>
+<h2 id="4-图片"><a href="#4-图片" class="headerlink" title="4.图片"></a>4.图片</h2><p>尽量用css || icon  || svg来替换图片</p>
+<h2 id="5-判断是否是手机端"><a href="#5-判断是否是手机端" class="headerlink" title="5.判断是否是手机端"></a>5.判断是否是手机端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;ontouchstart&quot; in window</div></pre></td></tr></table></figure>
+<h2 id="6-移动端滚动不顺畅"><a href="#6-移动端滚动不顺畅" class="headerlink" title="6.移动端滚动不顺畅"></a>6.移动端滚动不顺畅</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line">  -webkit-overflow-scrolling: touch;</div><div class="line">  overflow-scrolling: touch;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="7-动画尽可能使用css实现"><a href="#7-动画尽可能使用css实现" class="headerlink" title="7. 动画尽可能使用css实现"></a>7. 动画尽可能使用css实现</h2><p>比如使用translate3d来开启GPU加速</p>
+<h2 id="8-消除transition闪屏"><a href="#8-消除transition闪屏" class="headerlink" title="8.消除transition闪屏"></a>8.消除transition闪屏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">-webkit-transform-style: preserve-3d;</div><div class="line">/*设置内嵌的元素在 3D 空间如何呈现：保留 3D*/</div><div class="line"></div><div class="line">-webkit-backface-visibility: hidden;</div><div class="line">/*（设置进行转换的元素的背面在面对用户时是否可见：隐藏）*/</div></pre></td></tr></table></figure>
+<h2 id="9-利用padding-top-100-，给图片预留位置，防止页面重新渲染"><a href="#9-利用padding-top-100-，给图片预留位置，防止页面重新渲染" class="headerlink" title="9.利用padding-top:100%，给图片预留位置，防止页面重新渲染"></a>9.利用padding-top:100%，给图片预留位置，防止页面重新渲染</h2><h2 id="10-添加分享到朋友圈缩略图"><a href="#10-添加分享到朋友圈缩略图" class="headerlink" title="10.添加分享到朋友圈缩略图"></a>10.添加分享到朋友圈缩略图</h2><p>微信分享链接时，自动抓取缩略图方法： 需要一张300*300的图片, 并添加在 body下，微信会自动抓取这张图来作为缩略图显示，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;wx_pic&quot; style=&quot;display:none;&quot;&gt;</div><div class="line">  &lt;img src=&quot;assets/images/share.jpg&quot;&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h2 id="11-关闭ios键盘首字母大写"><a href="#11-关闭ios键盘首字母大写" class="headerlink" title="11. 关闭ios键盘首字母大写"></a>11. 关闭ios键盘首字母大写</h2><p>在iOS中，默认情况下键盘是开启首字母大写的功能的，如果启用这个功能，可以这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;text&quot; autocapitalize=&quot;off&quot;&gt;</div></pre></td></tr></table></figure>
+<h2 id="11-ios中去掉元素被触摸时产生的半透明灰色遮罩"><a href="#11-ios中去掉元素被触摸时产生的半透明灰色遮罩" class="headerlink" title="11.ios中去掉元素被触摸时产生的半透明灰色遮罩"></a>11.ios中去掉元素被触摸时产生的半透明灰色遮罩</h2><p>ios用户点击一个链接，会出现一个半透明灰色遮罩, 如果想要禁用，可设置-webkit-tap-highlight-color的alpha值为0，也就是属性值的最后一位设置为0就可以去除半透明灰色遮罩</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a,button,input,textarea&#123;-webkit-tap-highlight-color: rgba(0,0,0,0;)&#125;</div></pre></td></tr></table></figure>
+<h2 id="12-去除移动端输入框内阴影"><a href="#12-去除移动端输入框内阴影" class="headerlink" title="12.去除移动端输入框内阴影"></a>12.去除移动端输入框内阴影</h2><p>在iOS上，输入框默认有内部阴影，但无法使用 box-shadow 来清除，如果不需要阴影，可以这样关闭：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">input,</div><div class="line">textarea &#123;</div><div class="line">　　border: 0; /* 方法1 */</div><div class="line">　　-webkit-appearance: none; /* 方法2 */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="13-移动端禁止选中内容"><a href="#13-移动端禁止选中内容" class="headerlink" title="13.移动端禁止选中内容"></a>13.移动端禁止选中内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.user-select-none &#123;</div><div class="line">  -webkit-user-select: none;  /* Chrome all / Safari all */</div><div class="line">  -moz-user-select: none;     /* Firefox all （移动端不需要） */</div><div class="line">  -ms-user-select: none;      /* IE 10+ */     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="14-移动端自动拨号"><a href="#14-移动端自动拨号" class="headerlink" title="14.移动端自动拨号"></a>14.移动端自动拨号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;a href=&quot;tel:139xxxxxxxx&quot;&gt;一键拨打号码&lt;/a&gt;</div><div class="line">&lt;a href=&quot;sms:139xxxxxxx&quot;&gt;一键发送短信&lt;/a&gt;</div></pre></td></tr></table></figure>
+<h2 id="15-禁止将页面中的数字识别为电话号码"><a href="#15-禁止将页面中的数字识别为电话号码" class="headerlink" title="15.禁止将页面中的数字识别为电话号码"></a>15.禁止将页面中的数字识别为电话号码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot; /&gt;</div></pre></td></tr></table></figure>
+<h2 id="16-忽略Android平台中对邮箱地址的识别"><a href="#16-忽略Android平台中对邮箱地址的识别" class="headerlink" title="16.忽略Android平台中对邮箱地址的识别"></a>16.忽略Android平台中对邮箱地址的识别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;email=no&quot; /&gt;</div></pre></td></tr></table></figure>
+<h2 id="17-禁止调整字体大小"><a href="#17-禁止调整字体大小" class="headerlink" title="17. 禁止调整字体大小"></a>17. 禁止调整字体大小</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">body&#123;-webkit-text-size-adjust: 100%!important;&#125;</div></pre></td></tr></table></figure>
+<h2 id="18-active兼容处理-即-伪类-active-失效"><a href="#18-active兼容处理-即-伪类-active-失效" class="headerlink" title="18.active兼容处理 即 伪类 :active 失效"></a>18.active兼容处理 即 伪类 :active 失效</h2><p>方法一：body添加ontouchstart</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;body ontouchstart=&quot;&quot;&gt;</div></pre></td></tr></table></figure>
+<p>方法二：js给 document 绑定 touchstart 或 touchend 事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">a &#123;</div><div class="line"> color: #000;</div><div class="line">&#125;</div><div class="line">a:active &#123;</div><div class="line"> color: #fff;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;a herf=foo &gt;bar&lt;/a&gt;</div><div class="line">&lt;script&gt;</div><div class="line"> document.addEventListener(&apos;touchstart&apos;,function()&#123;&#125;,false);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="19-启动画面"><a href="#19-启动画面" class="headerlink" title="19.启动画面"></a>19.启动画面</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;-- ios --&gt;</div><div class="line">&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;start.png&quot;/&gt;</div></pre></td></tr></table></figure>
+<h2 id="20-强制横屏"><a href="#20-强制横屏" class="headerlink" title="20.强制横屏"></a>20.强制横屏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;screen-orientation&quot; content=&quot;portrait&quot;&gt;</div></pre></td></tr></table></figure>
+<h2 id="21-部分机型存在type为search的input，自带close按钮样式修改方法"><a href="#21-部分机型存在type为search的input，自带close按钮样式修改方法" class="headerlink" title="21.部分机型存在type为search的input，自带close按钮样式修改方法"></a>21.部分机型存在type为search的input，自带close按钮样式修改方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">input[type=&quot;search&quot;]::-webkit-search-cancel-button&#123;</div><div class="line">  display: none;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/mobile/">mobile</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://fay04.github.io/2017/04/06/移动端经验之谈/" data-title="移动端经验之谈 | fayのblog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/05/14/简述element和node的区别/" title="简述element和node的区别">
+  <strong>上一篇：</strong><br/>
+  <span>
+  简述element和node的区别</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/23/前端细节/"  title="前端细节">
+ <strong>下一篇：</strong><br/> 
+ <span>前端细节
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+<div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+<script>
+var gitment = new Gitment({
+  owner: 'fay04',
+  repo: 'fay04.github.io',
+  oauth: {
+    client_id: 'dc66225786bf890ec34d',
+    client_secret: '2c39a0ea3172ad582547ba47dc8c4aa1633414af',
+  },
+})
+gitment.render('gitment')
+</script>
+
+
+</div>  
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-移动端自适应"><span class="toc-number">1.</span> <span class="toc-text">1.移动端自适应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-单行溢出显示省略号-amp-amp-多行溢出显示省略号"><span class="toc-number">2.</span> <span class="toc-text">2.单行溢出显示省略号&& 多行溢出显示省略号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-分辨率"><span class="toc-number">3.</span> <span class="toc-text">3.分辨率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-图片"><span class="toc-number">4.</span> <span class="toc-text">4.图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-判断是否是手机端"><span class="toc-number">5.</span> <span class="toc-text">5.判断是否是手机端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-移动端滚动不顺畅"><span class="toc-number">6.</span> <span class="toc-text">6.移动端滚动不顺畅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-动画尽可能使用css实现"><span class="toc-number">7.</span> <span class="toc-text">7. 动画尽可能使用css实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-消除transition闪屏"><span class="toc-number">8.</span> <span class="toc-text">8.消除transition闪屏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-利用padding-top-100-，给图片预留位置，防止页面重新渲染"><span class="toc-number">9.</span> <span class="toc-text">9.利用padding-top:100%，给图片预留位置，防止页面重新渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-添加分享到朋友圈缩略图"><span class="toc-number">10.</span> <span class="toc-text">10.添加分享到朋友圈缩略图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-关闭ios键盘首字母大写"><span class="toc-number">11.</span> <span class="toc-text">11. 关闭ios键盘首字母大写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-ios中去掉元素被触摸时产生的半透明灰色遮罩"><span class="toc-number">12.</span> <span class="toc-text">11.ios中去掉元素被触摸时产生的半透明灰色遮罩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-去除移动端输入框内阴影"><span class="toc-number">13.</span> <span class="toc-text">12.去除移动端输入框内阴影</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-移动端禁止选中内容"><span class="toc-number">14.</span> <span class="toc-text">13.移动端禁止选中内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-移动端自动拨号"><span class="toc-number">15.</span> <span class="toc-text">14.移动端自动拨号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-禁止将页面中的数字识别为电话号码"><span class="toc-number">16.</span> <span class="toc-text">15.禁止将页面中的数字识别为电话号码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-忽略Android平台中对邮箱地址的识别"><span class="toc-number">17.</span> <span class="toc-text">16.忽略Android平台中对邮箱地址的识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-禁止调整字体大小"><span class="toc-number">18.</span> <span class="toc-text">17. 禁止调整字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-active兼容处理-即-伪类-active-失效"><span class="toc-number">19.</span> <span class="toc-text">18.active兼容处理 即 伪类 :active 失效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-启动画面"><span class="toc-number">20.</span> <span class="toc-text">19.启动画面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-强制横屏"><span class="toc-number">21.</span> <span class="toc-text">20.强制横屏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-部分机型存在type为search的input，自带close按钮样式修改方法"><span class="toc-number">22.</span> <span class="toc-text">21.部分机型存在type为search的input，自带close按钮样式修改方法</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/fay04" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/svg动画的实现原理/" title="svg动画的实现原理">svg动画的实现原理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/es6笔记/" title="es6笔记">es6笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html-js/" title="html js">html js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/meta标签的用处/" title="meta标签的用处">meta标签的用处<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mobile/" title="mobile">mobile<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitment/" title="gitment">gitment<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m fay. <br/>
+			This is my blog,believe it.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/fay04" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zhangppej@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="fay">fay</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

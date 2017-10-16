@@ -1,0 +1,532 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>svg动画制作以及原理 | fayのblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="fay">
+    
+
+    
+    <meta name="description" content="svg实现写字效果demo地址：svg实现写字效果 用到的代码如下 ： 1234567891011121314151617181920212223242526272829303132333435&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;">
+<meta name="keywords" content="svg动画的实现原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svg动画制作以及原理">
+<meta property="og:url" content="https://fay04.github.io/2017/02/24/svg动画制作以及原理/index.html">
+<meta property="og:site_name" content="fayのblog">
+<meta property="og:description" content="svg实现写字效果demo地址：svg实现写字效果 用到的代码如下 ： 1234567891011121314151617181920212223242526272829303132333435&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-29T04:48:31.234Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="svg动画制作以及原理">
+<meta name="twitter:description" content="svg实现写字效果demo地址：svg实现写字效果 用到的代码如下 ： 1234567891011121314151617181920212223242526272829303132333435&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="fayのblog" title="fayのblog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="fayのblog">fayのblog</a></h1>
+				<h2 class="blog-motto">不讲究，不将就，对生活，亦对技术。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:fay04.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/02/24/svg动画制作以及原理/" title="svg动画制作以及原理" itemprop="url">svg动画制作以及原理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="fay" target="_blank" itemprop="author">fay</a>
+		
+  <p class="article-time">
+    <time datetime="2017-02-24T12:25:01.000Z" itemprop="datePublished"> 发表于 2017-02-24</time>
+    
+  </p>
+  <link rel="stylesheet" href="/css/gitment.css"> 
+<script src="/js/gitment.js"></script> 
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#svg实现写字效果"><span class="toc-number">1.</span> <span class="toc-text">svg实现写字效果</span></a></li></ol>
+		
+		</div>
+		
+		<hr>
+<h2 id="svg实现写字效果"><a href="#svg实现写字效果" class="headerlink" title="svg实现写字效果"></a>svg实现写字效果</h2><p>demo地址：<a href="http://www.zpju.top/demo/svg/writing.html" target="_blank" rel="external">svg实现写字效果</a></p>
+<p>用到的代码如下 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line"></div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">        &lt;title&gt;svg&lt;/title&gt;</div><div class="line">        &lt;style type=&quot;text/css&quot;&gt;</div><div class="line">path &#123;</div><div class="line">	stroke-dasharray: 3000; </div><div class="line">    stroke-dashoffset: 3000; </div><div class="line">	animation: dash 3.4s ease-in-out   infinite;</div><div class="line">&#125;</div><div class="line">@-webkit-keyframes dash &#123;</div><div class="line">  to &#123;</div><div class="line">    stroke-dashoffset: 0;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@keyframes dash &#123;</div><div class="line">  to &#123;</div><div class="line">    stroke-dashoffset:0;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">        &lt;/style&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line"></div><div class="line">    &lt;body&gt;</div><div class="line">		&lt;svg width=&quot;580&quot; height=&quot;400&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;</div><div class="line"> &lt;!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ --&gt;</div><div class="line">&lt;g&gt;</div><div class="line">  &lt;title&gt;Layer 1&lt;/title&gt;</div><div class="line">  &lt;path d=&quot;m84.5,74c1,1 4.25304,1.53986 10,5c7.36966,4.43713 17.11809,7.3754 24,9c9.23305,2.17963 19.05182,4.61074 28,6c5.03865,0.78228 6.07613,3.61732 7,4c1.30656,0.5412 2.49756,1.9258 3,7c0.29561,2.9854 0.31068,8.00966 0,13c-0.50096,8.04668 -5.22054,14.83128 -9,20c-6.38455,8.7314 -13.45404,19.51277 -21,27c-8.54789,8.48137 -14.58976,16.44043 -21,22c-3.77727,3.27602 -8.70711,6.29289 -8,7c0.70711,0.70711 5.92656,-2.32083 14,-4c5.95531,-1.23863 14,-2 20,-2c3,0 4,0 6,0c1,0 2.07613,-0.38269 3,0c2.61313,1.0824 4.9176,2.38687 6,5c0.76537,1.84776 2,6 2,8c0,5 0,7 0,11c0,2 -0.61731,5.07613 -1,6c-0.5412,1.30656 -2,3 -3,4c-1,1 -0.17625,1.48625 2,2c0.97325,0.22975 2,1 4,3c1,1 2.97252,1.64749 4,6c0.4595,1.9465 0,5 0,8c0,5 0,8 0,13c0,5 -0.16289,9.6095 -4,14c-4.21362,4.82135 -7.73325,9.23273 -13,15c-4.7683,5.22144 -10.46356,9.72507 -17,14c-7.4855,4.89563 -12.45231,6.87299 -20,11c-4.72495,2.58356 -8.5412,1.69345 -8,3c0.76537,1.84775 10.57017,-2.8699 18,-6c6.70904,-2.82645 19.94762,-8.1492 34,-13c14.94597,-5.15927 30.10982,-10.15506 41,-12c4.06519,-0.68869 5.69344,-1.4588 7,-2c0.92387,-0.38269 1,1 2,3c1,2 1,5 1,10c0,6 -0.54901,10.60641 -4,16c-3.61542,5.65054 -5.42824,9.42334 -10,15c-6.27617,7.6557 -12.31021,12.06296 -18,15c-6.46909,3.33932 -12.09114,5.79568 -19,9c-4.05702,1.88165 -7.50424,2.03552 -12,5c-1.18065,0.7785 -1.30518,1.9523 -1,1c2.62523,-8.19196 13.59891,-17.3732 22,-26c15.30115,-15.71225 37.93748,-39.06769 65,-64c23.94484,-22.06003 48.54346,-40.41129 63,-56c10.19968,-10.99847 13.60583,-21.01947 14,-25c0.50244,-5.0742 1,-10 1,-12c0,-4 -1,-5 -1,-6c0,-3 0.48056,-5.03874 0,-8c-0.50653,-3.12144 -1,-7 -1,-9c0,-5 0.15277,-10.04132 -1,-14c-0.88412,-3.03616 0.03146,-5.41207 -2,-9c-0.69678,-1.23065 -1.18875,-2.58471 -2,-2c-2.56537,1.84901 -2.13007,5.3641 -5,11c-3.90353,7.66566 -10.60648,15.98135 -18,25c-9.42493,11.49655 -18.54698,19.42955 -29,30c-8.467,8.56213 -17.27379,17.73653 -24,25c-6.26422,6.76459 -10.11214,13.9183 -13,18c-2.08247,2.94336 -2,5 -2,6c0,1 -0.26254,1.53487 3,0c9.44708,-4.44438 21.23531,-8.36955 30,-12c12.39514,-5.13423 32.48715,-16.93904 53,-27c18.4873,-9.06749 31.87976,-14.56346 39,-22c1.54642,-1.61511 2,-3 2,-4c0,-1 0,-2 0,-3c0,-1 -1.78986,-3.07843 -3,-6c-0.85571,-2.06586 -2.31021,-2.71899 -5,-6c-4.57175,-5.57664 -7.13281,-9.99107 -15,-16c-6.40714,-4.89374 -14.83661,-11.22427 -23,-17c-8.83005,-6.2474 -17.80084,-11.41991 -28,-16c-9.82512,-4.41213 -18.10709,-5.38622 -23,-9c-1.79868,-1.32845 -4.29289,-2.70711 -5,-2c-1.41422,1.41422 -0.49829,8.93797 -1,15c-0.90729,10.96252 0.08391,23.05353 -1,34c-1.0049,10.14841 -3.49588,21.94218 -5,37c-1.49425,14.95885 -1.7,34.0498 -5,53c-3.66751,21.06061 -6.97069,37.00165 -8,55c-0.97231,17.00162 -2,30 -2,42c0,11 -0.19383,20.03043 1,27c0.86089,5.02582 4.14935,8.47427 5,9c1.90211,1.17557 4,3 5,3c3,0 6.16051,1.37851 12,0c6.52875,-1.54123 15.08049,-10.90042 25,-19c12.0994,-9.87952 25.24005,-22.74023 35,-32c9.23349,-8.76028 14.49829,-15.93796 15,-22c0.16495,-1.99319 0,-9 0,-11c0,-3 -0.22055,-4.83127 -4,-10c-2.12817,-2.91046 -3.21167,-4.71411 -6,-7c-4.37469,-3.5864 -6.79489,-5.22021 -10,-8c-3.77728,-3.276 -7.70267,-5.54135 -11,-7c-3.77063,-1.66801 -6.64749,-4.97252 -11,-6c-1.9465,-0.4595 -3.90633,-2.10341 -5,-3c-2.78833,-2.28587 -5.85274,-3.1731 -7,-4c-1.814,-1.30745 -2.09789,-4.17557 -4,-3c-0.85065,0.52573 0.05682,1.94623 1,3c4.27039,4.77115 7.04875,7.95851 13,15c5.04153,5.96515 12.58798,15.50092 21,22c7.07791,5.46838 15.5802,9.94687 26,14c6.78488,2.63922 17.90759,5.41479 26,7c6.93918,1.35928 15.03894,0.2117 23,1c10.14841,1.00488 19,2 29,2c11,0 18.02386,0.57736 25,0c6.06204,-0.50171 10,-1 11,-1l2,0l1,0l0,-1&quot; id=&quot;svg_1&quot; stroke-width=&quot;1.5&quot; stroke=&quot;#000&quot; fill=&quot;none&quot;/&gt;</div><div class="line"> &lt;/g&gt;</div><div class="line">&lt;/svg&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p>讲解技术点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">stroke-dasharray: 3000; </div><div class="line">stroke-dashoffset: 3000; </div><div class="line">animation: dash1 3.4s ease-in-out   infinite;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>虚线(stroke-dasharray)</p>
+</blockquote>
+<p>在SVG中也可以像CSS中那样指定边框为虚线要用到属性stroke-dasharray。stroke-dasharray属性的参数，是一组用逗号分割的数字组成的序列。需要注意的是，这里的数字必须用逗号分割，虽然也可以插入空格，但是数字之间必须用逗号分开。每一组数字，第一个用来表示实线，第二个用来表示空白。</p>
+<p>如果stroke-dasharray为5，则表示会先画5px实线，紧接着是5px空白，然后又是5px实线，从而形成虚线。如果你想要更复杂的虚线模式，你可以定义更多的数字</p>
+<p>storke-dashoffset</p>
+<blockquote>
+<p>stroke-dashoffset，定义虚线开始的位置。</p>
+</blockquote>
+<p>++因此可以通过css中的animation属性设置虚线开始的位置使其产生动画效果++</p>
+<p>当我们有一段长度为300的线条时，我们指定它的storke-dashoffset的值跟它的stroke-dasharray的值一样，这时候线条时从300像素的开始绘制，而我们整个的线条也只有300像素，所以这个时候线条时不可见的。而当我们指定storke-dashoffset的值从300慢慢的变化到0的时候，则线条也会从0的位置从新开始绘制，所以就像手画出来一样。配合CSS3就可以模拟实现手绘的动画效果。</p>
+<p>根据如上原理实现svg  loading百分比动画效果<br>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		&lt;title&gt;svg&lt;/title&gt;</div><div class="line">		&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">			.circle &#123;</div><div class="line">				stroke: #C3C3C3;</div><div class="line">				stroke-width: 4px;</div><div class="line">				stroke-dasharray: 300;</div><div class="line">				stroke-dashoffset: 300;</div><div class="line">				animation: dash 1.4s cubic-bezier(.42, .24, .01, .99) infinite;</div><div class="line">				transform-origin: center;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			@-webkit-keyframes dash &#123;</div><div class="line">				50% &#123;</div><div class="line">					stroke-dashoffset: 150;</div><div class="line">					transform: rotate(90deg);</div><div class="line">					stroke: #787D82</div><div class="line">				&#125;</div><div class="line">				100% &#123;</div><div class="line">					stroke-dashoffset: 0;</div><div class="line">					transform: rotate(180deg);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			@keyframes dash &#123;</div><div class="line">				50% &#123;</div><div class="line">					stroke-dashoffset: 150;</div><div class="line">					transform: rotate(90deg);</div><div class="line">					stroke: #787D82</div><div class="line">				&#125;</div><div class="line">				100% &#123;</div><div class="line">					stroke-dashoffset: 0;</div><div class="line">					transform: rotate(180deg);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&lt;/style&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line"></div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;svg width=&quot;200&quot; height=&quot;200&quot;&gt;</div><div class="line">			&lt;circle cx=&quot;100&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot; stroke-width=&quot;2&quot; class=&quot;circle&quot; fill=&quot;none&quot; /&gt;</div><div class="line">		&lt;/svg&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>演示地址：<a href="http://www.zpju.top/demo/svg/writing.html" target="_blank" rel="external">loading</a></p>
+<p>补充：<a href="http://editor.method.ac/" target="_blank" rel="external">好用的svg绘制工具  </a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/svg动画的实现原理/">svg动画的实现原理</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://fay04.github.io/2017/02/24/svg动画制作以及原理/" data-title="svg动画制作以及原理 | fayのblog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/03/14/css包含块/" title="css包含块">
+  <strong>上一篇：</strong><br/>
+  <span>
+  css包含块</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/08/24/meta整理/"  title="meta整理">
+ <strong>下一篇：</strong><br/> 
+ <span>meta整理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+<div id="gitment"></div>
+
+<!-- ��ҳ��Ҫ����gitment -->
+
+<script>
+var gitment = new Gitment({
+  owner: 'fay04',
+  repo: 'fay04.github.io',
+  oauth: {
+    client_id: 'dc66225786bf890ec34d',
+    client_secret: '2c39a0ea3172ad582547ba47dc8c4aa1633414af',
+  },
+})
+gitment.render('gitment')
+</script>
+
+
+</div>  
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#svg实现写字效果"><span class="toc-number">1.</span> <span class="toc-text">svg实现写字效果</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/fay04" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/svg动画的实现原理/" title="svg动画的实现原理">svg动画的实现原理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/es6笔记/" title="es6笔记">es6笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html-js/" title="html js">html js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/meta标签的用处/" title="meta标签的用处">meta标签的用处<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mobile/" title="mobile">mobile<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gitment/" title="gitment">gitment<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m fay. <br/>
+			This is my blog,believe it.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/fay04" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zhangppej@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="fay">fay</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
